@@ -1,0 +1,39 @@
+You are building a minimal and fast public-transit app for Israel that replaces Moovit/BusNearby behavior but fixes reliability gaps.
+Speak to users. No tech jargon. Focus on UX, clarity, and speed.
+
+Core flow
+1) Home screen: two fields and a big button.
+   - From: use current location or type a place.
+   - To: type a place.
+   - Button: “Find routes”.
+   - Small note: “Beta • delay‑aware suggestions”.
+
+2) Results list:
+   - Show 3–6 best options. Each row shows total time in minutes, # of transfers, earliest arrival, and a simple line of the legs (WALK → BUS → TRAIN → BUS).
+   - Add a tiny “reliability bar” that accounts for late buses. Low reliability = warn the user.
+   - Mark risky 1‑minute transfers as “tight” and suggest safer alternatives with +3–8 min buffer.
+
+3) Route details:
+   - Map on top with a clean polyline. Do not overload with icons.
+   - Below the map: step list with times. Emphasize transfer points and how much buffer you have.
+   - Show a small “Why this route?” that explains tradeoffs in plain language.
+
+4) Live navigation:
+   - While moving, show the next stop and countdown. If traffic worsens, suggest “Get off earlier at ___ and switch to ___” when it is truly better.
+   - Silent by default. One crisp alert before each transfer and before alighting.
+
+Design
+- Minimal, bright, Hebrew and English friendly. Large type. Clear contrasts. No clutter.
+- Map is the hero. Keep other UI elements slim.
+- Always accessible: color-safe, big tap targets, RTL support.
+
+Extra niceties
+- Favorite places: Home, Work, Custom.
+- “Safer transfers” toggle to avoid stressful 1–2 minute switches.
+- “Avoid delayed corridors” hint when a bus line is late at this hour.
+
+Connect to backend
+- Load the provided `openapi.json` into your tool and generate the client.
+- Use `/v1/routes/search` for options. Send from/to coordinates and optional notes.
+- Use `/v1/trip/start` and `/v1/trip/progress` to start and track a session.
+- Show `/health/` on a small debug page to verify connectivity.
