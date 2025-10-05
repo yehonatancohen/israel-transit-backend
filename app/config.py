@@ -15,3 +15,6 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 GTFS_DIR = os.path.join(DATA_DIR, "gtfs")
 GTFS_ZIP = os.path.join(GTFS_DIR, "il_gtfs.zip")
 LATENESS_STORE = os.path.join(DATA_DIR, "lateness_store.json")
+
+CURLBUS_API_BASE = os.getenv("CURLBUS_API_BASE", "https://curlbus.app/api").strip()
+CURLBUS_TIMEOUT = float(os.getenv("CURLBUS_TIMEOUT", "5"))

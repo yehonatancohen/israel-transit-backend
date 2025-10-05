@@ -32,9 +32,15 @@ docker run --rm -p 8080:8080 --env-file .env israel-transit-mvp:latest
 ```
 
 ## Data
-Put a GTFS ZIP under `data/gtfs/il_gtfs.zip` or upload via `/v1/feeds/gtfs/upload`.  
-You can fetch Israel MOT GTFS yourself and place it here before running (static schedules).  
-Realtime ingestion: `/v1/feeds/realtime/ingest` accepts normalized JSON events; map GTFS‑RT externally.
+By default the backend will attempt to hydrate its GTFS tables from the
+[Curlbus API](https://curlbus.app/).  Set `CURLBUS_API_BASE` if you need a
+different endpoint or leave it empty to disable the fetch.
+
+You can still supply your own static schedules: put a GTFS ZIP under
+`data/gtfs/il_gtfs.zip` or upload via `/v1/feeds/gtfs/upload`.
+
+Realtime ingestion: `/v1/feeds/realtime/ingest` accepts normalized JSON events;
+map GTFS‑RT externally.
 
 ## Environment
 - `OPENROUTER_API_KEY`: Optional for AI reranking via OpenRouter.
